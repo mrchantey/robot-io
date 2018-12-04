@@ -1,0 +1,31 @@
+{
+  "name": "robot-io",
+  "version": "1.0.0",
+  "description": "A web based interface for visualizing and interacting with arduino and sundry, using socket.IO and Plotly.",
+  "main": "src/index,.js",
+  "scripts": {
+    "prepublishOnly": "powershell ./publish.ps1",
+    "start": "webpack-dev-server --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peteyhayman/robot-io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/peteyhayman/robot-io/issues"
+  },
+  "homepage": "https://github.com/peteyhayman/robot-io#readme",
+  "dependencies": {
+    "plotly.js-dist": "^1.42.5"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
