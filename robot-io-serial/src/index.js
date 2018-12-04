@@ -1,14 +1,10 @@
-const SocketClient = require('./socketClient');
-const dataParser = require('./dataParser');
+// const SocketClient = require('./socketClient');
+// const dataParser = require('./dataParser');
+const Client = require('robot-io-client');
 
 window.addEventListener('load', start)
 
-
 function start() {
-    const socketClient = SocketClient();
-    socketClient.onDataCallback = dataParser.parseData
-    // socketClient.receiveTestData();
-
-    // messageListener.connect()
-
+    const client = Client()
+    // client.socketClient.beginDataTest()
 }

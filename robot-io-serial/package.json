@@ -1,10 +1,11 @@
 {
-  "name": "node",
-  "version": "1.0.0",
-  "description": "",
+  "name": "robot-io-serial",
+  "version": "0.0.0",
+  "description": "A package for communicating with and visualizing data from devices over serial.",
   "main": "./server/index.js",
   "dependencies": {
     "express": "^4.16.4",
+    "robot-io-client": "0.0.1",
     "serialport": "^7.0.2",
     "socket.io": "^2.1.1"
   },
@@ -15,8 +16,10 @@
     "webpack-dev-server": "^3.1.10"
   },
   "scripts": {
+    "prepublishOnly": "powershell ./publish.ps1",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open",
+    "serve": "node server/index.js"
   },
   "keywords": [],
   "author": "",
