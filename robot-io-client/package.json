@@ -1,8 +1,8 @@
 {
   "name": "robot-io",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A web based interface for visualizing and interacting with arduino and sundry, using socket.IO and Plotly.",
-  "main": "src/index,.js",
+  "main": "src/index.js",
   "scripts": {
     "prepublishOnly": "powershell ./publish.ps1",
     "start": "webpack-dev-server --open",

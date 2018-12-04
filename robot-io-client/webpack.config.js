@@ -1,6 +1,7 @@
 module.exports = {
 
     mode: "development",
+    entry: "./test",
     devServer: {
         contentBase: './dist'
     },

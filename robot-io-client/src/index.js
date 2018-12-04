@@ -1,13 +1,15 @@
 const SocketClient = require('./socketClient');
 const DataParser = require('./dataParser');
 
-window.addEventListener('load', start)
+module.exports = createRobotIOClient
 
-
-async function start() {
+function createRobotIOClient() {
     const dataParser = DataParser(true)
     const socketClient = SocketClient()
     socketClient.onDataCallback = dataParser.parseData
     // socketClient.beginDataTest();
-    socketClient.connect()
+    return {
+        dataParser,
+        socketClient
+    }
 }
