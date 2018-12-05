@@ -4,8 +4,9 @@ window.addEventListener('load', start)
 
 function start() {
     const client = Client()
-    client.socketClient.beginDataTest()
+    // client.socketClient.beginDataTest()
 }
+
 
 
 // console.log('hello world');

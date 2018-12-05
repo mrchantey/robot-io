@@ -1,0 +1,31 @@
+{
+  "name": "robot-io-johnny-five",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx webpack-dev-server --open",
+    "serve": "node server/index.js",
+    "prepare-board": "npx firmata-party uno --debug",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "firmata-party": "^1.5.10",
+    "johnny-five": "^1.0.0",
+    "lazypirate-cli": "^0.1.14",
+    "opn": "^5.4.0",
+    "plotly.js-dist": "^1.42.5",
+    "robot-io-client": "0.0.1",
+    "socket.io": "^2.2.0"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.26.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  },
+  "description": ""
+}
