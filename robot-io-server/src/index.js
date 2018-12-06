@@ -3,32 +3,8 @@ import Server from './server';
 
 const argv = Object.assign({ port: 3000, hostname: "127.0.0.1" }, argvIn)
 
+export default createServer
 
-const server = Server(argv)
-
-testSendData()
-
-function testSendData() {
-    const startMillis = Date.now()
-    setInterval(() => {
-        server.sendData({
-            mpu: {
-                acc: {
-                    x: Math.random(),
-                    y: Math.random(),
-                    z: Math.random()
-                },
-                gyro: {
-                    x: Math.random(),
-                    y: Math.random(),
-                    z: Math.random()
-                }
-            },
-            timeStamp: Date.now() - startMillis
-        })
-    }, 100);
-
-
+function createServer() {
+    return Server(argv)
 }
-
-const server = Server(argv)

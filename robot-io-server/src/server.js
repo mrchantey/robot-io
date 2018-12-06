@@ -1,5 +1,4 @@
 
-
 module.exports = createServer
 
 function createServer({ port = 8080, hostname = "127.0.0.1", open = false } = {}) {

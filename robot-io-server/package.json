@@ -1,11 +1,11 @@
 {
   "name": "robot-io-server",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Server for the robot-io-client",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "scripts": {
     "prepublishOnly": "powershell ./publish.ps1",
-    "start": "node lib/index.js",
+    "start": "node lib/test.js",
     "build": "babel src -d lib",
     "build-run": "babel src -d lib && node lib/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
