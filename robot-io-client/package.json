@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "description": "A web based interface for visualizing and interacting with arduino and sundry, using socket.IO and Plotly.",
   "main": "src/index.js",
-  "scripts": {
-    "prepublishOnly": "powershell ./publish.ps1",
-    "start": "webpack-dev-server --open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    "circle-assign": "^2.0.0",
+    "plotly.js-dist": "^1.42.5",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-scripts": "2.1.1",
+    "socket.io-client": "^2.2.0"
   },
   "repository": {
     "type": "git",
@@ -19,13 +22,20 @@
     "url": "https://github.com/peteyhayman/robot-io/issues"
   },
   "homepage": "https://github.com/peteyhayman/robot-io#readme",
-  "dependencies": {
-    "plotly.js-dist": "^1.42.5"
+  "scripts": {
+    "prepublishOnly": "powershell ./publish.ps1",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "source-map-loader": "^0.2.4",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
-  }
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
