@@ -1,10 +1,26 @@
-// const SocketClient = require('./socketClient');
-// const dataParser = require('./dataParser');
-const Client = require('robot-io-client');
+import JsonBufferParser from './jsonBufferParser';
+import SerialIO from './serialIO';
 
-window.addEventListener('load', start)
+export default createRobotSerial
+module.exports = createRobotSerial
 
-function start() {
-    const client = Client()
-    // client.socketClient.beginDataTest()
+function createRobotSerial() {
+    const serialIO = SerialIO()
+    const jsonBufferParser = JsonBufferParser()
+    serialIO.onBufferCallback = jsonBufferParser.parseBuffer
+    jsonBufferParser.onDataCallback = data => onDataListeners.forEach(l => l(data))
+
+    const onDataListeners = []
+    const onData = {
+        addListener: listener => onDataListeners.push(listener),
+    }
+
+    const robotSerial = {
+        serialIO,
+        jsonBufferParser,
+        onData,
+        sendData: data => serialIO.sendData(JSON.stringify(data))
+    }
+    return robotSerial
 }
+
