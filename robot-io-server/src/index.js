@@ -31,4 +31,4 @@ function testSendData() {
 
 }
 
-// const server = Server(argv)
+const server = Server(argv)

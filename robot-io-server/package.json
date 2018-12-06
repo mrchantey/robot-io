@@ -1,14 +1,23 @@
 {
   "name": "robot-io-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "description": "Server for the robot-io-client",
+  "main": "src/index.js",
   "scripts": {
+    "prepublishOnly": "powershell ./publish.ps1",
     "start": "node lib/index.js",
     "build": "babel src -d lib",
     "build-run": "babel src -d lib && node lib/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peteyhayman/robot-io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/peteyhayman/robot-io/issues"
+  },
+  "homepage": "https://github.com/peteyhayman/robot-io#readme",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,6 +29,7 @@
     "express": "^4.16.4",
     "minimist": "^1.2.0",
     "opn": "^5.4.0",
+    "robot-io-client": "0.0.4",
     "socket.io": "^2.2.0"
   }
 }

@@ -3,5 +3,5 @@ cd ../
 git add .
 git commit -m 'patch'
 git push origin master
-cd ./robot-io-client
+cd ./robot-io-server
 npm version patch
