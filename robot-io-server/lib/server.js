@@ -28,7 +28,7 @@ function createServer() {
   const onDataListeners = []; // app.use(express.static('./build/static'))
   // app.use(express.static('./build'))
 
-  const clientPath = dev ? '../build' : '../node_modules/robot-io-client/build';
+  const clientPath = dev ? '../build' : '../../robot-io-client/build';
   app.use(express.static(path.join(__dirname, clientPath)));
   app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, clientPath, "index.html"));

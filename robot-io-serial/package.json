@@ -4,10 +4,9 @@
   "description": "A package for communicating with and visualizing data from devices over serial.",
   "main": "./lib/index.js",
   "dependencies": {
-    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "core-js": "^2.6.0",
     "minimist": "^1.2.0",
-    "serialport": "^7.1.0",
-    "core-js": "^2.6.0"
+    "serialport": "^7.1.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.0",

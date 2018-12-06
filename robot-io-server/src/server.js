@@ -14,7 +14,7 @@ function createServer({ port = 8080, hostname = "127.0.0.1", open = false, dev =
     // app.use(express.static('./build/static'))
     // app.use(express.static('./build'))
 
-    const clientPath = dev ? '../build' : '../node_modules/robot-io-client/build'
+    const clientPath = dev ? '../build' : '../../robot-io-client/build'
 
     app.use(express.static(path.join(__dirname, clientPath)))
     app.get('/', (req, res) => {

@@ -3,9 +3,10 @@
 # rm ./package-lock.json
 # npm i
 
-# cd ../
-# git add .
-# git commit -m 'patch'
-# git push origin master
-# cd ./robot-io-server
+npm run build
 npm version patch
+cd ../
+git add .
+git commit -m 'patch'
+git push origin master
+cd ./robot-io-server

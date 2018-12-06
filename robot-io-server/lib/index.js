@@ -22,7 +22,8 @@ module.exports = createRobotIO;
 function createRobotIO() {
   const server = (0, _server.default)(argv);
   const robotIO = {
-    server
+    server,
+    addMiddleware
   };
 
   function addMiddleware(middleware) {
