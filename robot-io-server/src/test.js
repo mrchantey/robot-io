@@ -1,13 +1,13 @@
-import RobotServer from './index';
+import RobotIO from './index';
 
-const server = RobotServer()
+const robotIO = RobotIO()
 
 testSendData()
 
 function testSendData() {
     const startMillis = Date.now()
     setInterval(() => {
-        server.sendData({
+        robotIO.server.sendData({
             mpu: {
                 acc: {
                     x: Math.random(),

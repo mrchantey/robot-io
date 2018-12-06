@@ -15,9 +15,20 @@ const argv = Object.assign({
   port: 3000,
   hostname: "127.0.0.1"
 }, argvIn);
-var _default = createServer;
+var _default = createRobotIO;
 exports.default = _default;
+module.exports = createRobotIO;
 
-function createServer() {
-  return (0, _server.default)(argv);
+function createRobotIO() {
+  const server = (0, _server.default)(argv);
+  const robotIO = {
+    server
+  };
+
+  function addMiddleware(middleware) {
+    server.onData.addListener(middleware.sendData);
+    middleware.onData.addListener(server.sendData);
+  }
+
+  return robotIO;
 }

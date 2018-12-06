@@ -4,13 +4,13 @@ var _index = _interopRequireDefault(require("./index"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-const server = (0, _index.default)();
+const robotIO = (0, _index.default)();
 testSendData();
 
 function testSendData() {
   const startMillis = Date.now();
   setInterval(() => {
-    server.sendData({
+    robotIO.server.sendData({
       mpu: {
         acc: {
           x: Math.random(),

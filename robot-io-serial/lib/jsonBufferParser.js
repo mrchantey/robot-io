@@ -13,10 +13,10 @@ var _default = createJsonBufferParser;
 exports.default = _default;
 module.exports = createJsonBufferParser;
 
-function createJsonBufferParser() {
+function createJsonBufferParser(argv) {
   // let incompleteMessage = ""
   // let incompleteMessageDepth = 0;
-  let jsonStr = "";
+  let jsonStr = '';
   let jsonBufferInProgress = false;
   const bufParser = {
     parseBuffer,
@@ -34,7 +34,7 @@ function createJsonBufferParser() {
 
       if (chr === '<') {
         jsonBufferInProgress = true;
-      } else if (chr === '>' && jsonStr != '') {
+      } else if (chr === '>' && jsonBufferInProgress === true) {
         jsonBufferInProgress = false;
         onMessageComplete(jsonStr);
         jsonStr = '';
@@ -45,15 +45,16 @@ function createJsonBufferParser() {
   }
 
   function onMessageComplete(msg) {
+    msg = msg.replace('\r\n', '');
+
     try {
-      // console.log('parsing message');
-      msg = msg.replace('\r\n', ''); // console.dir(msg);
-
-      const obj = JSON.parse(msg); // console.dir(obj);
-
+      const obj = JSON.parse(msg);
       bufParser.onDataCallback(obj);
     } catch (err) {
-      console.error(err);
+      if (argv.debug === true) {
+        console.log(`bad json message: ${msg}`);
+        console.error(err);
+      }
     }
   }
 

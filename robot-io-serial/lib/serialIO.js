@@ -16,9 +16,9 @@ module.exports = createSerialIO;
 var _default = createSerialIO;
 exports.default = _default;
 
-function createSerialIO() {
-  let portName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "COM7";
-  let baudRate = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 9600;
+function createSerialIO(argv) {
+  const portName = argv.serialPort;
+  const baudRate = argv.baudRate;
   const port = new SerialPort(portName, {
     baudRate
   }, err => {

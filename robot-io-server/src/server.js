@@ -1,7 +1,7 @@
 
 module.exports = createServer
 
-function createServer({ port = 8080, hostname = "127.0.0.1", open = false } = {}) {
+function createServer({ port = 8080, hostname = "127.0.0.1", open = false, dev = false } = {}) {
     const path = require('path');
     const express = require('express');
     const app = express();
@@ -9,11 +9,16 @@ function createServer({ port = 8080, hostname = "127.0.0.1", open = false } = {}
     const io = require('socket.io')(http);
     const opn = require('opn');
 
+    const onDataListeners = []
+
     // app.use(express.static('./build/static'))
     // app.use(express.static('./build'))
-    app.use(express.static(path.join(__dirname, '../build')))
+
+    const clientPath = dev ? '../build' : '../node_modules/robot-io-client/build'
+
+    app.use(express.static(path.join(__dirname, clientPath)))
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, '../build', "index.html"))
+        res.sendFile(path.join(__dirname, clientPath, "index.html"))
     })
 
     http.listen(port, hostname, _ => console.log(`\nserver listening\nhost:\t${hostname}\nport:\t${port}\n`))
@@ -25,7 +30,7 @@ function createServer({ port = 8080, hostname = "127.0.0.1", open = false } = {}
         console.log(`socket ${id} connected..`);
         socket.on('disconnect', _ => console.log(`socket ${id} disconnected`))
         socket.on('data', data => {
-            module.exports.onDataCallback(data, socket, id)
+            onDataListeners.forEach(l => l(data, socket, id))
         })
 
         // socket.emit('data', { message: "welcome to the server" })
@@ -37,14 +42,11 @@ function createServer({ port = 8080, hostname = "127.0.0.1", open = false } = {}
         io.emit("data", obj)
     }
 
-    function onDataCallback(data, socket, id) {
-        console.log(`data received from socket ${id}`);
-        console.dir(data);
-    }
-
     const server = {
         sendData,
-        onDataCallback
+        onData: {
+            addListener: lsn => onDataListeners.push(lsn)
+        }
     }
 
     return server

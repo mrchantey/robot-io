@@ -8,8 +8,9 @@ module.exports = createSerialIO
 
 export default createSerialIO
 
-function createSerialIO(portName = "COM7", baudRate = 9600) {
-
+function createSerialIO(argv) {
+    const portName = argv.serialPort
+    const baudRate = argv.baudRate
     const port = new SerialPort(portName, { baudRate }, err => { if (err) console.error(err) })
 
     const serialIO = {

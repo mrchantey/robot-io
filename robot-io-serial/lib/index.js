@@ -13,13 +13,20 @@ var _serialIO = _interopRequireDefault(require("./serialIO"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const argvIn = require('minimist')(process.argv.slice(2));
+
+const argv = {
+  serialPort: "COM7",
+  baudRate: 9600
+};
+Object.assign(argv, argvIn);
 var _default = createRobotSerial;
 exports.default = _default;
 module.exports = createRobotSerial;
 
 function createRobotSerial() {
-  const serialIO = (0, _serialIO.default)();
-  const jsonBufferParser = (0, _jsonBufferParser.default)();
+  const serialIO = (0, _serialIO.default)(argv);
+  const jsonBufferParser = (0, _jsonBufferParser.default)(argv);
   serialIO.onBufferCallback = jsonBufferParser.parseBuffer;
 
   jsonBufferParser.onDataCallback = data => onDataListeners.forEach(l => l(data));
@@ -34,5 +41,13 @@ function createRobotSerial() {
     onData,
     sendData: data => serialIO.sendData(JSON.stringify(data))
   };
+
+  if (argv.debug === true) {
+    robotSerial.onData.addListener(data => {
+      console.log('data received');
+      console.dir(data);
+    });
+  }
+
   return robotSerial;
 }

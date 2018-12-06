@@ -9,7 +9,9 @@ function createServer() {
       _ref$hostname = _ref.hostname,
       hostname = _ref$hostname === void 0 ? "127.0.0.1" : _ref$hostname,
       _ref$open = _ref.open,
-      open = _ref$open === void 0 ? false : _ref$open;
+      open = _ref$open === void 0 ? false : _ref$open,
+      _ref$dev = _ref.dev,
+      dev = _ref$dev === void 0 ? false : _ref$dev;
 
   const path = require('path');
 
@@ -21,13 +23,15 @@ function createServer() {
 
   const io = require('socket.io')(http);
 
-  const opn = require('opn'); // app.use(express.static('./build/static'))
+  const opn = require('opn');
+
+  const onDataListeners = []; // app.use(express.static('./build/static'))
   // app.use(express.static('./build'))
 
-
-  app.use(express.static(path.join(__dirname, '../build')));
+  const clientPath = dev ? '../build' : '../node_modules/robot-io-client/build';
+  app.use(express.static(path.join(__dirname, clientPath)));
   app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../build', "index.html"));
+    res.sendFile(path.join(__dirname, clientPath, "index.html"));
   });
   http.listen(port, hostname, _ => console.log(`\nserver listening\nhost:\t${hostname}\nport:\t${port}\n`));
   if (open) opn(`http://${hostname}:${port}`);
@@ -37,7 +41,7 @@ function createServer() {
     console.log(`socket ${id} connected..`);
     socket.on('disconnect', _ => console.log(`socket ${id} disconnected`));
     socket.on('data', data => {
-      module.exports.onDataCallback(data, socket, id);
+      onDataListeners.forEach(l => l(data, socket, id));
     }); // socket.emit('data', { message: "welcome to the server" })
   });
 
@@ -47,14 +51,11 @@ function createServer() {
     io.emit("data", obj);
   }
 
-  function onDataCallback(data, socket, id) {
-    console.log(`data received from socket ${id}`);
-    console.dir(data);
-  }
-
   const server = {
     sendData,
-    onDataCallback
+    onData: {
+      addListener: lsn => onDataListeners.push(lsn)
+    }
   };
   return server;
 }
