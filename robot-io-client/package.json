@@ -1,6 +1,6 @@
 {
   "name": "robot-io-client",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A web based interface for visualizing and interacting with arduino and sundry, using socket.IO and Plotly.",
   "main": "src/index.js",
   "devDependencies": {
