@@ -1,6 +1,6 @@
 {
   "name": "robot-io-server",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Server for the robot-io-client",
   "main": "lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "express": "^4.16.4",
     "minimist": "^1.2.0",
     "opn": "^5.4.0",
-    "robot-io-client": "0.0.4",
+    "robot-io-client": "0.0.7",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
