@@ -1,43 +1,61 @@
-import CreateDataEntity from '../factories/dataEntityCreator';
+// import CreateDataEntity from '../factories/dataEntityCreator';
+import createChart from '../factories/entityCreators/chart';
+import createTrace from '../factories/entityCreators/trace';
 
 export default createDataEntityManager
 
 
 function createDataEntityManager() {
 
-    const entities = []
+    let charts = []
+    let traces = []
+
 
     const manager = {
-        entities,
+        charts,
         addData,
         resetData
     }
 
 
     function addData(data) {
-        // console.log(data);
-        // console.log(`data received`);
-        // console.dir(data);
-        if (data.timeStamp === undefined) {
-            console.warn('no timestamp found');
-            return
-        }
+        parseInit(data)
+        parseData(data)
+    }
 
-        Object.keys(data)
-            .filter(k => k !== 'timeStamp')
-            .forEach(k => {
-                // if (data.uuid === undefined) data.uuid = 0
-                let entity = entities.find(ent => ent.shortName === k)
-                if (entity === undefined) {
-                    entity = CreateDataEntity(k, data[k])
-                    entities.push(entity)
-                }
-                entity.addData(data[k], data.timeStamp)
+    function parseInit(data) {
+        if (data.init === undefined)
+            return
+        const chartDatas = data.init
+            .filter(d => d.type === 'chart')
+        charts = chartDatas.map(d => createChart(d))
+
+        traces = data.init
+            .filter(d => d.type === 'trace')
+            .map(d => {
+                const chart = charts.find(c => c.id === d.chartId)
+                return createTrace(d, chart)
             })
+    }
+    function parseData(data) {
+        if (data.data === undefined)
+            return
+        data.data.forEach(d => {
+            const trace = traces.find(t => t.id === d.id)
+            if (trace === undefined)
+                //TODO IF DOESNT EXIST, CREATE IT
+                console.log(`trace not found matching ${d.name}`);
+            else {
+
+                trace.appendDataBuffer(d.value, data.timeStamp)
+            }
+        })
     }
 
     function resetData() {
-        entities.forEach(e => e.resetData())
+        charts.forEach(c => c.destroy())
+        charts.length = 0
+        // entities.forEach(e => e.resetData())
     }
     return manager
 }

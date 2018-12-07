@@ -6,6 +6,8 @@ function createChart(groupData, traceDatas, autoUpdate = true, updateInterval = 
     const groupEl = createGroup(groupData)
 
     // console.dir(groupEl);
+
+    //////////////////////////////////////////////////////////////////////
     const traceDataBuffers = {
         x: traceDatas.map(d => []),
         y: traceDatas.map(d => []),
@@ -18,20 +20,20 @@ function createChart(groupData, traceDatas, autoUpdate = true, updateInterval = 
         newTraceDatas.y.forEach((yData, i) => traceDataBuffers.y[i].push(yData))
         // console.dir(traceDataBuffers);
     }
-
-
-
-    function update() {
-        appendTraces(groupEl, traceDataBuffers)
-        clearDataBuffers()
-    }
-
     function clearDataBuffers() {
         traceDataBuffers.x.forEach(arr => arr.length = 0)
         traceDataBuffers.y.forEach(arr => arr.length = 0)
 
 
     }
+
+    ///////////////////////////////////////////////////////////////////////////
+
+    function update() {
+        appendTraces(groupEl, traceDataBuffers)
+        clearDataBuffers()
+    }
+
 
     let traces = []
     // const traces = await createTraces(groupEl, traceDatas)
@@ -70,6 +72,26 @@ function createChart(groupData, traceDatas, autoUpdate = true, updateInterval = 
 }
 
 
+
+//REFACTORED
+//////////////////////////////////////////////////////////////////////////
+
+
+function appendTraces(groupEl, newTraceDatas) {
+    Plotly.extendTraces(groupEl, { x: newTraceDatas.x, y: newTraceDatas.y }, newTraceDatas.indicies)
+    const count = groupEl.data[0].x.length - 1
+    const maxPointsDisplayed = 100
+    if (count > maxPointsDisplayed) {
+        const min = groupEl.data[0].x[count - maxPointsDisplayed]
+        const max = groupEl.data[0].x[count]
+        const layout = {}
+        Object.assign(layout, groupEl.layout)
+        Object.assign(layout.xaxis, { autorange: false, range: [min, max] })
+        Plotly.relayout(groupEl, layout)
+    }
+}
+
+
 function createGroup(groupData) {
     const el = document.createElement("div")
     document.getElementById('plot-root').appendChild(el)
@@ -78,7 +100,6 @@ function createGroup(groupData) {
     // dataGroups.push(el)
     return el
 }
-
 async function createTraces(groupEl, _traceDatas) {
     const traceDatas = _traceDatas.map(d => validateTraceData(groupEl, d))
     await Plotly.addTraces(groupEl, traceDatas)
@@ -106,17 +127,4 @@ function validateTraceData(groupEl, _traceData) {
     Object.assign(traceData, _traceData)
     return traceData
 }
-
-function appendTraces(groupEl, newTraceDatas) {
-    Plotly.extendTraces(groupEl, { x: newTraceDatas.x, y: newTraceDatas.y }, newTraceDatas.indicies)
-    const count = groupEl.data[0].x.length - 1
-    const maxPointsDisplayed = 100
-    if (count > maxPointsDisplayed) {
-        const min = groupEl.data[0].x[count - maxPointsDisplayed]
-        const max = groupEl.data[0].x[count]
-        const layout = {}
-        Object.assign(layout, groupEl.layout)
-        Object.assign(layout.xaxis, { autorange: false, range: [min, max] })
-        Plotly.relayout(groupEl, layout)
-    }
-}
+/////////////////////////////////////////////////////////////////////////////////

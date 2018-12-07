@@ -13,6 +13,10 @@ function createDataStore() {
         onData.invoke(newData)
     }
 
+    function resetData() {
+        deleteData()
+    }
+
     function setData(newData = []) {
         deleteData()
         onReset.invoke()
@@ -29,14 +33,13 @@ function createDataStore() {
     let realtimeIntervalId
 
     function setDataRealtime(newData = [], onCompleteCallback) {
-        deleteData()
-        onReset.invoke()
+        resetData()
         const startMillis = Date.now()
         let i = 0;
 
         realtimeIntervalId = setInterval(_ => {
-            const elapsedMillis = Date.now() - startMillis
-            while (i < newData.length && newData[i].timeStamp < elapsedMillis) {
+            const elapsedSeconds = (Date.now() - startMillis) / 1000
+            while (i < newData.length && (newData[i].timeStamp === undefined || newData[i].timeStamp < elapsedSeconds)) {
                 addData(newData[i])
                 i++
             }
@@ -61,6 +64,7 @@ function createDataStore() {
         onReset,
         setData,
         deleteData,
+        resetData,
         setDataRealtime,
         stopDataRealtime,
         getData

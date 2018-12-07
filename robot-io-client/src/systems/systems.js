@@ -15,12 +15,17 @@ function createSystems() {
     const dataEntityManager = DataEntityManager()
     dataStore.onData.addListener(dataEntityManager.addData)
     dataStore.onReset.addListener(dataEntityManager.resetData)
-    socketClient.onData.addListener(dataStore.addData)
-    socketClient.onData.addListener(dataEntityManager.addData)
+    // socketClient.onData.addListener(dataStore.addData)
+    // socketClient.onData.addListener(dataEntityManager.addData)
+
+
     const dataInputTest = DataInputTest()
+    dataStore.onReset.addListener(dataInputTest.end)
     dataInputTest.onData.addListener(dataStore.addData)
-    dataInputTest.onData.addListener(dataEntityManager.addData)
-    dataInputTest.onReset.addListener(dataStore.deleteData)
+    // dataInputTest.onReset.addListener(dataStore.resetData)
+    // dataInputTest.onData.addListener(dataEntityManager.addData)
+
+
 
     const systems = {
         dataEntityManager,
@@ -29,6 +34,8 @@ function createSystems() {
         dataStore
     }
     window.systems = systems
+
+
 
     return systems
 }

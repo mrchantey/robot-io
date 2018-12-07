@@ -23,7 +23,7 @@ class FileUI extends Component {
 
     }
 
-    handleDataTest = (e) => {
+    handleTest = (e) => {
 
         if (this.state.isTesting === false) {
             this.setState({ testText: "End Data Test", isTesting: true })
@@ -35,14 +35,19 @@ class FileUI extends Component {
         }
     }
 
-    handleLoadData() {
+    handleReset() {
+        console.log('resetting data..');
+        window.systems.dataStore.resetData()
+    }
+
+    handleLoad() {
         console.log('loading data');
         DataUtility.UploadAsync().then(data => {
             window.systems.dataStore.setData(data)
         })
     }
 
-    handleLoadDataRealtime = (e) => {
+    handleLoadRealtime = (e) => {
         console.log('loading data realtime');
 
 
@@ -65,7 +70,7 @@ class FileUI extends Component {
         }
     }
 
-    handleSaveData() {
+    handleSave() {
         console.log('saving data');
         const data = window.systems.dataStore.getData()
         DataUtility.Download(data)
@@ -75,10 +80,11 @@ class FileUI extends Component {
         return (
             <div>
                 <h2>File</h2>
-                <button onClick={this.handleSaveData}>Save</button>
-                <button onClick={this.handleLoadData}>Load</button>
-                <button onClick={this.handleLoadDataRealtime}>{this.state.realtimeText}</button>
-                <button onClick={this.handleDataTest}>{this.state.testText}</button>
+                <button onClick={this.handleReset}>Reset</button>
+                <button onClick={this.handleSave}>Save</button>
+                <button onClick={this.handleLoad}>Load</button>
+                <button onClick={this.handleLoadRealtime}>{this.state.realtimeText}</button>
+                <button onClick={this.handleTest}>{this.state.testText}</button>
             </div>)
     }
 
