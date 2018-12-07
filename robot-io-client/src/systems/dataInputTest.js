@@ -18,46 +18,35 @@ function createDataInputTest() {
 
     function begin() {
         window.systems.dataStore.resetData()
-        const initData = {
-            init: [{
-                type: "chart",
-                id: 0,
-                name: "accelerometer"
-                // layout: {
-                //     title: "accelerometer",
-                //     showlegend: true,
-                //     xaxis: { title: "time (s)" },
-                //     yaxis: { title: "units" }
-                // plot_bgcolor: '#1E1E1E',
-                // }
-            },
-            {
-                type: "trace",
-                id: 1,
-                chartId: 0,
-                name: "x",
-                settings: {
-                    mode: "markers"
-                    // mode: "lines"
-                }
-            }
-            ]
-        }
+        const initData = getInitData()
         ent.onData.invoke(initData)
-        let value = 0
+        let valaX = 0
+        let valaY = 0
+        let valaZ = 0
+        let valgX = 0
+        let valgY = 0
+        let valgZ = 0
         const beginMillis = Date.now()
         intervalID = setInterval(() => {
-            value += Math.random() - 0.499999
+            valaX += Math.random() - 0.499999
+            valaY += Math.random() - 0.499999
+            valaZ += Math.random() - 0.499999
+            valgX += Math.random() - 0.499999
+            valgY += Math.random() - 0.499999
+            valgZ += Math.random() - 0.499999
             const data = {
                 timeStamp: (Date.now() - beginMillis) / 1000,
-                data: [{
-                    id: 1,
-                    value
-                }]
+                data: [
+                    { id: 1, value: valaX },
+                    { id: 2, value: valaY },
+                    { id: 3, value: valaZ },
+                    { id: 4, value: valaZ },
+                    { id: 5, value: valgX },
+                    { id: 6, value: valgY },
+                ]
             }
             ent.onData.invoke(data)
         }, 100);
-
     }
 
     function end() {
@@ -67,8 +56,38 @@ function createDataInputTest() {
 
     return ent
 
-
 }
+
+function getInitData() {
+    return {
+        init:
+            [{ type: 'chart', name: 'Accelerometer', id: 0 },
+            { type: 'trace', name: 'x', id: 1, chartId: 0 },
+            { type: 'trace', name: 'y', id: 2, chartId: 0 },
+            { type: 'trace', name: 'z', id: 3, chartId: 0 },
+            { type: 'chart', name: 'Gyroscope', id: 1 },
+            { type: 'trace', name: 'x', id: 4, chartId: 1 },
+            { type: 'trace', name: 'y', id: 5, chartId: 1 },
+            { type: 'trace', name: 'z', id: 6, chartId: 1 }]
+    }
+    // return {
+    //     init: [{ type: "chart", id: 0, name: "accelerometer", layout: { title: "accelerometer", showlegend: true, xaxis: { title: "time (s)" }, yaxis: { title: "units" }, plot_bgcolor: '#1E1E1E', } },
+    //     { type: "trace", id: 1, chartId: 0, name: "x", settings: { mode: "markers"/*"lines" */ } }]
+    // }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // function begin() {
