@@ -1,31 +1,36 @@
 {
   "name": "robot-io-johnny-five",
-  "version": "0.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "main": "./lib/index.js",
+  "description": "A package for communicating with and visualizing data from devices using johnny-five",
   "scripts": {
-    "start": "npx webpack-dev-server --open",
-    "serve": "node server/index.js",
+    "start": "node lib/index.js",
+    "prepublishOnly": "powershell ./publish.ps1",
+    "build": "babel src -d lib",
     "prepare-board": "npx firmata-party uno --debug",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/peteyhayman/robot-io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/peteyhayman/robot-io/issues"
+  },
+  "homepage": "https://github.com/peteyhayman/robot-io#readme",
+  "author": "Peter Hayman",
   "license": "ISC",
+  "keywords": [],
   "dependencies": {
-    "express": "^4.16.4",
+    "core-js": "^2.6.0",
     "firmata-party": "^1.5.10",
     "johnny-five": "^1.0.0",
-    "lazypirate-cli": "^0.1.14",
-    "opn": "^5.4.0",
-    "plotly.js-dist": "^1.42.5",
-    "robot-io-client": "0.0.1",
-    "socket.io": "^2.2.0"
+    "minimist": "^1.2.0"
   },
   "devDependencies": {
-    "source-map-loader": "^0.2.4",
-    "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
-  },
-  "description": ""
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.2.0"
+  }
 }
