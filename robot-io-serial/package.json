@@ -1,6 +1,6 @@
 {
   "name": "robot-io-serial",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A package for communicating with and visualizing data from devices over serial.",
   "main": "./lib/index.js",
   "dependencies": {
