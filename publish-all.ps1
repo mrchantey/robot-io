@@ -1,0 +1,9 @@
+cd ./robot-io-client
+npm publish
+cd ../robot-io-johnny-five
+npm publish
+cd ../robot-io-serial
+npm publish
+cd ../robot-io-server
+npm publish
+cd ..
