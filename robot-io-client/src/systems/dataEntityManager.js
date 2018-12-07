@@ -26,6 +26,7 @@ function createDataEntityManager() {
     function parseInit(data) {
         if (data.init === undefined)
             return
+        window.systems.dataStore.resetData()
         const chartDatas = data.init
             .filter(d => d.type === 'chart')
         charts = chartDatas.map(d => createChart(d))
