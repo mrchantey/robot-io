@@ -1,6 +1,6 @@
 {
   "name": "robot-io-server",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "Server for the robot-io-client",
   "main": "lib/index.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "start": "node lib/test.js",
     "build": "babel src -d lib",
     "build-run": "babel src -d lib && node lib/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build && node lib/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "express": "^4.16.4",
     "minimist": "^1.2.0",
     "opn": "^5.4.0",
-    "robot-io-client": "0.0.9",
+    "robot-io-client": "0.0.10",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {

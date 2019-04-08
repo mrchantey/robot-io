@@ -5,3 +5,5 @@ import Systems from './systems/systems';
 Systems()
 // const systems = Systems()
 UI()
+
+// window.systems.dataInputTest.begin()

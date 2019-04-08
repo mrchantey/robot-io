@@ -13,6 +13,10 @@ export default function createTrace(_trace, chart) {
         trace.dataBuffer.length = 0
     }
 
+    trace.destroy = _ => {
+        chart.removeTrace(trace)
+    }
+
     //this is async
     chart.addTrace(trace)
     return trace

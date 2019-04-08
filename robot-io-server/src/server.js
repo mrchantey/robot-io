@@ -14,11 +14,22 @@ function createServer({ port = 8080, hostname = "127.0.0.1", open = false, dev =
     // app.use(express.static('./build/static'))
     // app.use(express.static('./build'))
 
-    const clientPath = dev ? '../build' : '../../robot-io-client/build'
+    //this should work both in npm_modules and the git repo
+    const clientPath = '../../robot-io-client/build'
+    // const clientPath = dev ? '../build' : '../../robot-io-client/build'
 
+    app.use(express.json())
     app.use(express.static(path.join(__dirname, clientPath)))
     app.get('/', (req, res) => {
         res.sendFile(path.join(__dirname, clientPath, "index.html"))
+    })
+
+    app.post('/', (req, res) => {
+        console.log('POST RECEIVED');
+        console.dir(req.body);
+
+        server.sendData(req.body)
+        res.send({ message: 'message received' })
     })
 
     http.listen(port, hostname, _ => console.log(`\nserver listening\nhost:\t${hostname}\nport:\t${port}\n`))

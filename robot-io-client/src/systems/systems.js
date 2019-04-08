@@ -5,28 +5,27 @@ import DataStore from './dataStore';
 import DataInputTest from './dataInputTest';
 
 // module.exports = createRobotIOClient
-import DataEntityManager from './dataEntityManager';
+import ChartManager from './chartManager';
 export default createSystems
 
 
 function createSystems() {
     const dataStore = DataStore()
     const socketClient = SocketClient()
-    const dataEntityManager = DataEntityManager()
-    dataStore.onData.addListener(dataEntityManager.addData)
-    dataStore.onReset.addListener(dataEntityManager.resetData)
+    const chartManager = ChartManager()
+    dataStore.onData.addListener(chartManager.addData)
+    dataStore.onReset.addListener(chartManager.resetData)
     socketClient.onData.addListener(dataStore.addData)
 
     const dataInputTest = DataInputTest()
-    dataStore.onReset.addListener(dataInputTest.end)
     dataInputTest.onData.addListener(dataStore.addData)
     // dataInputTest.onReset.addListener(dataStore.resetData)
-    // dataInputTest.onData.addListener(dataEntityManager.addData)
+    // dataInputTest.onData.addListener(chartManager.addData)
 
 
 
     const systems = {
-        dataEntityManager,
+        chartManager,
         dataInputTest,
         socketClient,
         dataStore

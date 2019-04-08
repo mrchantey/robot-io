@@ -21,7 +21,8 @@
   "bugs": {
     "url": "https://github.com/peteyhayman/robot-io/issues"
   },
-  "homepage": "https://github.com/peteyhayman/robot-io#readme",
+  "homepageOLD": "https://github.com/peteyhayman/robot-io#readme",
+  "homepage": "/",
   "scripts": {
     "prepublishOnly": "powershell ./publish.ps1",
     "start": "react-scripts start",

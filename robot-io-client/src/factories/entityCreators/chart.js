@@ -24,6 +24,10 @@ export default function createChart(_chart) {
         Plotly.addTraces(el, [trace.settings])
     }
 
+    chart.removeTrace = (trace) => {
+        Plotly.deleteTraces(el, trace.index)
+    }
+
     chart.updateTraces = _ => {
         const newTraceDatas = {
             x: chart.traces.map(t => t.dataBuffer.map(b => b.timeStamp)),

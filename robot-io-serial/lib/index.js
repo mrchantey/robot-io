@@ -17,7 +17,7 @@ const argvIn = require('minimist')(process.argv.slice(2));
 
 const argv = {
   serialPort: "COM7",
-  baudRate: 9600
+  baudRate: 115200
 };
 Object.assign(argv, argvIn);
 var _default = createRobotSerial;
@@ -43,6 +43,7 @@ function createRobotSerial() {
   };
 
   if (argv.debug === true) {
+    console.log('\ndebug mode enabled\n');
     robotSerial.onData.addListener(data => {
       console.log('data received');
       console.dir(data);
@@ -50,4 +51,8 @@ function createRobotSerial() {
   }
 
   return robotSerial;
+}
+
+if (require.main === module) {
+  createRobotSerial();
 }

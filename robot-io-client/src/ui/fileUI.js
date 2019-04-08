@@ -38,6 +38,7 @@ class FileUI extends Component {
     handleReset() {
         console.log('resetting data..');
         window.systems.dataStore.resetData()
+        window.systems.dataInputTest.end()
     }
 
     handleLoad() {

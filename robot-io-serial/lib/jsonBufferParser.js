@@ -33,6 +33,7 @@ function createJsonBufferParser(argv) {
       const chr = bufStr.charAt(i);
 
       if (chr === '<') {
+        jsonStr = '';
         jsonBufferInProgress = true;
       } else if (chr === '>' && jsonBufferInProgress === true) {
         jsonBufferInProgress = false;

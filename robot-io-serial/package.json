@@ -1,6 +1,6 @@
 {
   "name": "robot-io-serial",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "A package for communicating with and visualizing data from devices over serial.",
   "main": "./lib/index.js",
   "dependencies": {
@@ -28,7 +28,6 @@
   "scripts": {
     "prepublishOnly": "powershell ./publish.ps1",
     "build": "babel src -d lib",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node server/index.js"
+    "test": "node lib/index.js --debug"
   }
 }

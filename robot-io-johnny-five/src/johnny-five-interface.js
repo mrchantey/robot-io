@@ -16,6 +16,7 @@ function createJFiveInterface(argv = {}) {
                 console.log('sending data not yet supported');
         }
     }
+
     createBoard(argv.serialPort).then(board => {
 
         board.on("error", console.error)
