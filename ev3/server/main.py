@@ -26,6 +26,7 @@ def GetCommander():
 
 
 if __name__ == '__main__':
+    print("yay the programs running, deployedStatus:", GetIsDeployed())
     server = Server(5000)
     commander = GetCommander()
     @staticmethod
@@ -34,4 +35,4 @@ if __name__ == '__main__':
         commander.Run(**kwargs)
         return kwargs
     server.requestHandler.onRequestCallback = onRequest
-    server.Run()
+    server.Run(GetIsDeployed())

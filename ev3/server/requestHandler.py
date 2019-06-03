@@ -24,9 +24,11 @@ class RequestHandler(BaseHTTPRequestHandler):
         responseBytes = bytes(responseStr, "UTF-8")
         self.wfile.write(responseBytes)
         return
+
     # 3
 
     # this should be called for preflight responses
+
     def end_headers(self):
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type')

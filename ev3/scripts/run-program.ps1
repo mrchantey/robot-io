@@ -1,0 +1,1 @@
+plink -ssh -pw maker robot@169.254.38.17 -m run-program.sh
