@@ -26,7 +26,7 @@ def GetCommander():
 
 
 if __name__ == '__main__':
-    print("yay the programs running, deployedStatus:", GetIsDeployed())
+    print("program running...")
     server = Server(5000)
     commander = GetCommander()
     @staticmethod
