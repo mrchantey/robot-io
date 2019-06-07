@@ -1,0 +1,6 @@
+Name        Device	            Mac	IP
+darkmoon	Desktop	            18-31-BF-B8-C7-24	192.168.1.4
+            Pixel 3	            7C-D9-5C-A8-BB-93	192.168.1.5
+greencat	IPad	            B4:F6:1C:5D:AA:68	192.168.1.6
+	        Google Home Mini	38:8B:59:A3:DF:D6	192.168.1.7
+	        Galaxy S8	        04-D6-AA-6A-5D-18	192.168.1.8

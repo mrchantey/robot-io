@@ -1,5 +1,5 @@
 ls
-rm -r server
+rm -r droid_io
 ls
 # pwd
 # cd /home/nao

@@ -1,4 +1,4 @@
-cd server
+cd droid_io
 # pwd
 # ls
 echo "starting program"

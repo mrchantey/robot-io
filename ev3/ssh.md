@@ -1,2 +1,2 @@
-ssh robot@169.254.38.17
+ssh robot@192.168.1.9
 password: maker

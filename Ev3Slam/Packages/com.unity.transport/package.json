@@ -1,9 +1,0 @@
-{
-	"name": "com.unity.transport",
-	"version": "0.1.0-preview",
-	"unity": "2019.1",
-	"description": "Unity network transport layer - the low-level interface for sending UDP data.",
-	"dependencies": {
-		"com.unity.entities": "0.0.12-preview.33"
-	}
-}
