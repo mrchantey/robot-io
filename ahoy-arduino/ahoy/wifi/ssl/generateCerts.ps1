@@ -1,0 +1,2 @@
+# days = 30 years
+OpenSSL req -x509 -newkey rsa:1024 -sha256 -keyout key.txt -out cert.txt -days 10950 -nodes -subj "/C=AU/ST=NSW/L=Sydney/O=Chantey [AU]/OU=Chantey/CN=esp8266.local" -addext subjectAltName=DNS:esp8266.local,IP:192.168.1.1

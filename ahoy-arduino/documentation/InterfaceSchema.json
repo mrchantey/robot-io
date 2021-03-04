@@ -1,0 +1,233 @@
+{
+	"version": "0.1",
+	"type": "singletonArray",
+	"children": [
+		{
+			"name": "metadata",
+			"displayName": "Overview",
+			"type": "object",
+			"children": [
+				{
+					"name": "name",
+					"displayName": "Name",
+					"type": "string"
+				},
+				{
+					"name": "docId",
+					"displayName": "Doc ID",
+					"type": "string"
+				}
+			]
+		},
+		{
+			"name": "iot",
+			"displayName": "IoT",
+			"type": "object",
+			"children": [
+				{
+					"name": "modules",
+					"displayName": "IoT Modules",
+					"type": "singletonArray",
+					"children": [
+						{
+							"index": 0,
+							"name": "status",
+							"displayName": "Status",
+							"type": "object",
+							"clientEdit": false,
+							"deviceEdit": false,
+							"children": [
+								{
+									"name": "deviceId",
+									"displayName": "Device ID",
+									"type": "copystring",
+									"default": "$iotDeviceId",
+									"clientEdit": false,
+									"deviceEdit": false
+								},
+								{
+									"name": "lastState",
+									"displayName": "Last State",
+									"type": "string",
+									"default": "never connected",
+									"clientEdit": false,
+									"deviceEdit": true
+								},
+								{
+									"name": "lastHeartbeat",
+									"displayName": "Last Heartbeat",
+									"type": "datetime"
+								},
+								{
+									"name": "uptime",
+									"displayName": "Uptime",
+									"type": "timeunit"
+								},
+								{
+									"name": "enabled",
+									"displayName": "Set Enabled",
+									"type": "boolean",
+									"clientEdit": true
+								}
+							]
+						},
+						{
+							"index": 1,
+							"name": "ledStrip",
+							"displayName": "LED Strip",
+							"type": "object",
+							"clientEdit": true,
+							"deviceEdit": false,
+							"children": [
+								{
+									"name": "ledSegments",
+									"displayName": "LED Segments",
+									"type": "array",
+									"clientEdit": true,
+									"deviceEdit": false,
+									"properties": [
+										{
+											"name": "linearLedSegment",
+											"displayName": "Linear",
+											"type": "object",
+											"clientEdit": true,
+											"deviceEdit": false,
+											"properties": [
+												{
+													"name": "ledIndicies",
+													"displayName": "LED Indicies",
+													"type": "minmax",
+													"clientEdit": true,
+													"deviceEdit": false,
+													"min": 0,
+													"max": 255
+												},
+												{
+													"name": "posA",
+													"displayName": "Pos A",
+													"type": "vector3",
+													"clientEdit": true,
+													"deviceEdit": false
+												},
+												{
+													"name": "posB",
+													"displayName": "Pos B",
+													"type": "vector3",
+													"clientEdit": true,
+													"deviceEdit": false
+												}
+											]
+										},
+										{
+											"name": "circularLedSegment",
+											"displayName": "Circular",
+											"type": "object",
+											"clientEdit": true,
+											"deviceEdit": false,
+											"properties": [
+												{
+													"name": "ledIndicies",
+													"displayName": "LED Indicies",
+													"type": "minmax",
+													"clientEdit": true,
+													"deviceEdit": false,
+													"min": 0,
+													"max": 255,
+													"step": 1
+												},
+												{
+													"name": "position",
+													"displayName": "Position",
+													"type": "vector3",
+													"clientEdit": true,
+													"deviceEdit": false
+												},
+												{
+													"name": "radius",
+													"displayName": "Radius",
+													"type": "range",
+													"clientEdit": true,
+													"deviceEdit": false,
+													"min": "0",
+													"max": 50,
+													"step": "0.1"
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "ledPatterns",
+									"displayName": "LED Patterns",
+									"type": "array",
+									"clientEdit": true,
+									"deviceEdit": false,
+									"properties": [
+										{
+											"name": "rainbowLedPattern",
+											"displayName": "Rainbow",
+											"type": "object",
+											"clientEdit": true,
+											"deviceEdit": false,
+											"properties": [
+												"ledBrigtness",
+												{
+													"name": "speed",
+													"displayName": "Speed",
+													"type": "range",
+													"clientEdit": true,
+													"deviceEdit": false,
+													"min": 0,
+													"max": 60
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"index": 2,
+							"name": "relay",
+							"displayName": "Relay",
+							"type": "object",
+							"clientEdit": true,
+							"deviceEdit": false,
+							"children": []
+						},
+						{
+							"index": 3,
+							"name": "dualMotors",
+							"displayName": "Dual Motors",
+							"type": "object",
+							"clientEdit": true,
+							"deviceEdit": false,
+							"children": [
+								{
+									"name": "motorASpeed",
+									"displayName": "Motor A",
+									"type": "range",
+									"clientEdit": true,
+									"deviceEdit": false,
+									"min": -1,
+									"max": 1,
+									"step": "0.01"
+								},
+								{
+									"name": "motorBSpeed",
+									"displayName": "Motor B",
+									"type": "range",
+									"clientEdit": true,
+									"deviceEdit": false,
+									"min": -1,
+									"max": 1,
+									"step": "0.01"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
