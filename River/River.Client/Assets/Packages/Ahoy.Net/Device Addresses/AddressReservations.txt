@@ -1,0 +1,16 @@
+Device    Mac                 IP
+Modem     34-E8-94-95-EB-FA   192.168.1.1
+
+Desktop   18-31-BF-B8-C7-24   192.168.1.4
+
+Pixel 3   7C-D9-5C-A8-BB-93   192.168.1.5
+
+IPad      B4-F6-1C-5D-AA-68   192.168.1.6
+
+HmeMini   38-8B-59-A3-DF-D6   192.168.1.7
+
+Galaxy    04-D6-AA-6A-5D-18   192.168.1.8
+
+EV3       74-DA-38-F2-AF-EC   192.168.1.9
+
+Quest     2C-26-17-45-2C-3E   192.168.1.10
