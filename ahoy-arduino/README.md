@@ -2,6 +2,20 @@
 helper library for arduino
 //https://espeasy.readthedocs.io/en/latest/Reference/GPIO.html#best-pins-to-use-on-esp8266
 
+
+### ESP-8266 setup instructions
+1. download drivers, depends on board
+  - [CH340](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+  - [silabs](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
+  - [ftdi](https://ftdichip.com/drivers/vcp-drivers/)
+1. Arduino -> File -> Preferences -> Additional board manager urls
+  -  `http://arduino.esp8266.com/stable/package_esp8266com_index.json`
+  - or for esp32 as well `https://dl.espressif.com/dl/package_esp32_index.json, http://arduino.esp8266.com/stable/package_esp8266com_index.json`
+1. Arduino -> Tools -> Board -> Boards Manager -> search `esp` -> install `esp32` && `esp8266`
+1. Arduino -> Tools -> Board -> ESP8266 -> `Generic ESP8266`
+1. Arduino -> Tools -> Flash Size -> `4MB - FS:2MB OTA`
+
+
 ## Patch Notes
 
 - 0.5 - 

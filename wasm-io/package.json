@@ -1,0 +1,24 @@
+{
+  "name": "wasm-io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "asbuild": "asc ./src/main.ts -b ./bin/main.wasm --debug",
+    "asbuild:my-go": "asc ./src/main.ts -b ./bin/main.wasm -O3s --noAssert",
+    "asbuild:optimized": "npx asc ./src-ts/app.ts -b ./src/app.wasm -t ./src/app.wat -O3z --runtime stub --noAssert --use abort=",
+    "ashexdump": "cd ./src && xxd -i app.wasm > app.wasm.h && cd ../",
+    "asbuild:dump": "npm run asbuild:optimized && npm run ashexdump",
+    "watch": "onchange -i 'src-ts/**/*' -- npm run asbuild:dump",
+    "watch-poll": "onchange -i -p 500 'src-ts/**/*' -- npm run asbuild:dump"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "as-wasi": "^0.4.4",
+    "assemblyscript": "^0.18.31",
+    "onchange": "^7.1.0"
+  }
+}
